@@ -1,0 +1,32 @@
+:root {
+    --scroll-width: 6px;
+  }
+
+/* WebKit (Safari, Chrome, Opera) */
+::-webkit-scrollbar {
+    width: var(--scroll-width);
+}
+/* Firefox */
+::-moz-scrollbar {
+    width: var(--scroll-width);
+}
+/* Internet Explorer and Edge */
+::-ms-scrollbar {
+    width: var(--scroll-width);
+}
+/* Other browsers */
+::scrollbar {
+    width: var(--scroll-width);
+}
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>CubeLife</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/scroll.css">
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>    
+</head>
+<body>
+    <canvas id="renderCanvas" tabindex="0"></canvas>
+    <div id="VueApp">
+        <div id="InfoPanel">
+            <div id="info_all" class="dbg_txt">0</div>
+            <div id="info_alive" class="dbg_txt">0</div>
+            <div id="info_dead" class="dbg_txt">0</div>
+            <div class="ncw_btn" @click="asdfasd()" style="position: fixed;left: 9vw;top: 1vh;font-size: 1.6vh;z-index: 29;">Help</div>
+            
+            <div style="overflow-y: auto; height: 90vh; width: fit-content;padding: 0 0.5vw;">
+                <div style="position: sticky; top: 0; background-color: black;">Species: {{species.length}}</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr;">
+                    <div class="table_header" @click="sortSpecies(0)">gen</div>
+                    <div class="table_header" @click="sortSpecies(1)">code</div>
+                    <div class="table_header" @click="sortSpecies(2)">amount</div>
+                </div>
+                <div v-for="item in species" :key="item.id" class="species_item" v-on:click="selectSpecies(item)">
+                    <div :style="`background-color: rgb(${item.color[0] * 255}, ${item.color[1] * 255}, ${item.color[2] * 255}); color: white; padding: 2px;`">&nbsp;</div>
+                    <div>&nbsp;{{item.generation}}</div>
+                    <div>{{item.code_length}}</div>
+                    <div>{{item.amount}}</div>
+                </div>
+            </div>
+
+            <div class="cube_info" v-if="selected_cube">
+                <div style="display: grid; grid-template-columns: 1fr 1fr;">
+                    <div>ID: {{selected_cube.getId()}}</div><div style="text-align: right;">Idle ticks: {{selected_cube.idle_ticks_num}}</div>
+                    <div>Alive: {{selected_cube.isAlive()}}</div><div style="text-align: right;">All ticks: {{selected_cube.all_ticks_num}}</div>
+                </div>
+                <br>
+                <div>SpeciesID: {{selected_cube.getSpeciesId()}}</div>
+                <div>Generation: {{selected_cube.getGeneration()}}</div>
+                <div>Color: <span :style="`background-color: rgb(${selected_cube.color[0] * 255}, ${selected_cube.color[1] * 255}, ${selected_cube.color[2] * 255}); color: white; padding: 2px;`">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                <br>
+                <div>Markers: {{selected_cube.getSideMarkers()}}</div>
+                <div>Energy: {{selected_cube.getEnergy()}}</div>                
+                <br>
+                <div>Registers:</div>
+                <div>Reg A: {{selected_cube.getRegA()}}</div>
+                <div>Reg B: {{selected_cube.getRegB()}}</div>
+                <div>Loop: {{selected_cube.getRegLoop()}}</div>
+                <div>Addr1: {{selected_cube.getRegAddr1()}}</div>
+                <div>Addr2: {{selected_cube.getRegAddr2()}}</div>
+                <div>IP: {{selected_cube.getIP()}}</div>
+                <br>
+                <div style="display: grid; grid-template-columns: 15vw 1fr;height: 64vh;">
+                    <div>
+                        <div>Code length: {{ selected_cube.getCode().length / 3 }}</div>
+                        <textarea style="width: 14vw; height: 95%;">{{selected_cube.getCodeStr()}}</textarea>
+                    </div>
+                    <div>
+                        <div>Memory length: {{selected_cube.getMemoryLen()}}</div>
+                        <br>
+                        <div>{{selected_cube.getMemory()}}</div>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div style="position: fixed;left: 0;bottom: 0;font-size: 1.6vh;z-index: 19;display: grid; grid-template-columns: 1fr 1fr;">
+                <div class="ncw_btn" @click="showAllSpecies()">Show all</div>
+                <div class="ncw_btn" @click="clearSort()">Clear sort</div>
+            </div>
+        </div>
+        <div id="MainMenu">
+            <div style="font-size: 5vh;">CubeLife</div>
+            <div class="ncw_btn" style="top: 46vh; left: 46vw;font-size: 2.5vh;z-index: 9;" onmousedown="startGame()">Start simulation</div>
+        </div>
+        <div id="HelpPanel">
+            <div>p - pause/unpause.</div>
+            <div>In pause mode you can select cubes by clicking on them</div>
+            <div>and examining whole their info: code, memory, registers, etc.</div>
+            <div>&nbsp;</div>
+            <div>Use arrows to move camera, mouse middle button to zoom,</div>
+            <div>and hold left mouse button to change camera direction.</div>
+            <div>&nbsp;</div>
+            <div>Click on species in the list will hide all cubes exept this species.</div>
+            <div>"Show all" button returns all cubes back.</div>
+        </div>
+    </div>
+    <div id="DebugPanel">
+        <div id="fps" class="dbg_txt">0</div>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
