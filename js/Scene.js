@@ -25,7 +25,7 @@ export class Scene extends BABYLON.Scene {
         //const camera = new BABYLON.ArcRotateCamera("MainCamera", 0, 0, 0, new BABYLON.Vector3(0, 0, 0), scene);
         //const camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 5, -10), scene);
 
-        const camera = new BABYLON.UniversalCamera("UniversalCamera", new BABYLON.Vector3(0, 0, -10), scene);
+        const camera = new BABYLON.UniversalCamera("UniversalCamera", new BABYLON.Vector3(0, 0, -100), scene);
         camera.inputs.addMouseWheel();
         camera.attachControl(canvas, true);
         this.activeCamera = camera;
