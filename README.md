@@ -18,3 +18,5 @@ With some chances code can mutate during coping in four ways:
 TODO:
 - remove a potential possibility of immortality;
 - add energy sources like some kind of "food".
+
+Live demo: https://ncwdev.github.io/CubeLife/
