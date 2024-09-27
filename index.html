@@ -5,7 +5,8 @@
     <title>CubeLife</title>
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="./css/scroll.css">
-    <script src="https://cdn.babylonjs.com/babylon.js"></script>    
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="./js/Lib/vue.global.prod.js"></script>
 </head>
 <body>
     <canvas id="renderCanvas" tabindex="0"></canvas>
@@ -15,7 +16,7 @@
             <div id="info_alive" class="dbg_txt">0</div>
             <div id="info_dead" class="dbg_txt">0</div>
             <div class="ncw_btn" @click="asdfasd()" style="position: fixed;left: 9vw;top: 1vh;font-size: 1.6vh;z-index: 29;">Help</div>
-            
+
             <div style="overflow-y: auto; height: 90vh; width: fit-content;padding: 0 0.5vw;">
                 <div style="position: sticky; top: 0; background-color: black;">Species: {{species.length}}</div>
                 <div style="display: grid; grid-template-columns: 1fr 1fr 1fr;">
@@ -42,7 +43,7 @@
                 <div>Color: <span :style="`background-color: rgb(${selected_cube.color[0] * 255}, ${selected_cube.color[1] * 255}, ${selected_cube.color[2] * 255}); color: white; padding: 2px;`">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
                 <br>
                 <div>Markers: {{selected_cube.getSideMarkers()}}</div>
-                <div>Energy: {{selected_cube.getEnergy()}}</div>                
+                <div>Energy: {{selected_cube.getEnergy()}}</div>
                 <br>
                 <div>Registers:</div>
                 <div>Reg A: {{selected_cube.getRegA()}}</div>
@@ -89,7 +90,6 @@
     <div id="DebugPanel">
         <div id="fps" class="dbg_txt">0</div>
     </div>
-    <script src="https://unpkg.com/vue@next"></script>
     <script src="js/app.js"></script>
 </body>
 </html>

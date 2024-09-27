@@ -8,10 +8,10 @@ let canvas = null;
 let scene  = null;
 
 // structure
-const OPERATION_SIZE = 3;   // all operations are 3 bytes: OPCODE, OPERAND 1, OPERAND 2
+const OPERATION_SIZE = 3; // all operations are 3 bytes: OPCODE, OPERAND 1, OPERAND 2
 const CUBE_SIDES = 6;
 const MAX_MARKER_VALUE = 999999;
-const MAX_MEMORY_LEN = 3000;    // and code len too
+const MAX_MEMORY_LEN = 3000; // and code len too
 const MAX_CUBES_NUMBER = 10000;
 
 // death
@@ -57,7 +57,7 @@ const initEngine = async function() {
         throw 'initEngine(): engine should not be null';
     }
 
-    const {World} = await import('./World.js');
+    const { World } = await import('./World.js');
 
     const config = {
         radius_max: 840,
@@ -83,7 +83,7 @@ function runRenderLoop() {
 
 async function startGame() {
     // menu button click handler
-    const {MainMenu} = await import('./Gui/MainMenu.js');
+    const { MainMenu } = await import('./Gui/MainMenu.js');
     MainMenu.setVisible(false);
 
     world.start();
