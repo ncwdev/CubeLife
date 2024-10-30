@@ -46,6 +46,7 @@ export class World {
 
         this.scene = new Scene(engine);
         this.scene.createSkyBox(config.radius_max);
+        this.scene.applyOptimizations();
     }
 
     start() {
